@@ -24,6 +24,10 @@ function App() {
       .then((res) => setProdutos(res))
   }, [])
 
+  function adicionarAoCarrinho(produto: Produto) {
+    dispatch(adicionar(produto))
+  }
+
   /* function adicionarAoCarrinho(produto: Produto) {  //função de adicionar ao carrinho apagar quando de certo
     if (carrinho.find((p) => p.id === produto.id)) {
       alert('Item já adicionado')

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { Produto as ProdutoType } from '../../App'
+import { Produto, Produto as ProdutoType } from '../../App'
 import * as S from './styles'
 import {adicionar} from  '../../store/reducers/carrinho'
  
@@ -7,6 +7,7 @@ type Props = {
   produto: ProdutoType
   favoritar: (produto: ProdutoType) => void
   estaNosFavoritos: boolean
+  adicionarAoCarrinho: (produto: Produto) => void
 }
 
 export const paraReal = (valor: number) =>
