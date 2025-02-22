@@ -6,6 +6,9 @@ import { GlobalStyle } from './styles'
 import { Provider } from 'react-redux'
 import { store } from './store'
 
+import { useDispatch } from 'react-redux'
+import { adicionar } from './store/carrinho'
+
 export type Produto = {
   id: number
   nome: string
@@ -14,6 +17,8 @@ export type Produto = {
 }
 
 function App() {
+  const dispatch = useDispatch()
+
   const [produtos, setProdutos] = useState<Produto[]>([])
   // const [carrinho, setCarrinho] = useState<Produto[]>([])
   const [favoritos, setFavoritos] = useState<Produto[]>([])
@@ -28,14 +33,6 @@ function App() {
     dispatch(adicionar(produto))
   }
 
-  /* function adicionarAoCarrinho(produto: Produto) {  //função de adicionar ao carrinho apagar quando de certo
-    if (carrinho.find((p) => p.id === produto.id)) {
-      alert('Item já adicionado')
-    } else {
-      setCarrinho([...carrinho, produto])
-    }
-  }*/
-
   function favoritar(produto: Produto) {
     if (favoritos.find((p) => p.id === produto.id)) {
       const favoritosSemProduto = favoritos.filter((p) => p.id !== produto.id)
@@ -45,20 +42,17 @@ function App() {
     }
   }
 
-  /*  function adicionarAoCarrinho(){
-    console.log('teste')
-  }*/
-
   return (
     <Provider store={store}>
       <GlobalStyle />
       <div className="container">
         <Header favoritos={favoritos} />
         <Produtos
+          key={produto.id}
           produtos={produtos}
-          favoritos={favoritos}
           favoritar={favoritar}
           adicionarAoCarrinho={adicionarAoCarrinho}
+          estaNosFavoritos={produtoEstaNosFavoritos(produto)}
         />
       </div>
     </Provider>

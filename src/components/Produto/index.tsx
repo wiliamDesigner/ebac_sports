@@ -21,7 +21,7 @@ const ProdutoComponent = ({
   estaNosFavoritos
 }: Props) => {
 
-   const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <S.Produto>

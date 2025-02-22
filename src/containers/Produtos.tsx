@@ -7,17 +7,13 @@ type Props = {
   produtos: ProdutoType[] //array de produtos no carrinho
   favoritos: ProdutoType[] // array de produtos como favoritos
   favoritar: (produto: ProdutoType) => void
+  adicionarAoCarrinho: (produto: ProdutoType) => void
 }
 
-const ProdutosComponent = ({
-  produtos,
-  favoritos,
-  favoritar
-}: Props) => {
+const ProdutosComponent = ({ produtos, favoritos, favoritar }: Props) => {
   const produtoEstaNosFavoritos = (produto: ProdutoType) => {
     const produtoId = produto.id
     const IdsDosFavoritos = favoritos.map((f) => f.id)
-
     return IdsDosFavoritos.includes(produtoId)
   }
 
@@ -26,10 +22,11 @@ const ProdutosComponent = ({
       <S.Produtos>
         {produtos.map((produto) => (
           <Produto
-            estaNosFavoritos={produtoEstaNosFavoritos(produto)}
             key={produto.id}
             produto={produto}
             favoritar={favoritar}
+            adicionarAoCarrinho={adicionarAoCarrinho} 
+            estaNosFavoritos={produtoEstaNosFavoritos(produto)}
           />
         ))}
       </S.Produtos>
