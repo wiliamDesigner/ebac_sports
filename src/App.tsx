@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 
 import { useDispatch } from 'react-redux'
-import { adicionar } from './store/carrinho'
+import { adicionar } from './store/reducers/carrinho'
 
 export type Produto = {
   id: number
@@ -18,7 +18,6 @@ export type Produto = {
 
 function App() {
   const dispatch = useDispatch()
-
   const [produtos, setProdutos] = useState<Produto[]>([])
   // const [carrinho, setCarrinho] = useState<Produto[]>([])
   const [favoritos, setFavoritos] = useState<Produto[]>([])
@@ -26,7 +25,10 @@ function App() {
   useEffect(() => {
     fetch('https://fake-api-tau.vercel.app/api/ebac_sports')
       .then((res) => res.json())
-      .then((res) => setProdutos(res))
+      .then((res) => {
+        setProdutos(res)
+        console.log(res) // Isso agora vai funcionar corretamente
+      })
   }, [])
 
   function adicionarAoCarrinho(produto: Produto) {
@@ -48,11 +50,10 @@ function App() {
       <div className="container">
         <Header favoritos={favoritos} />
         <Produtos
-          key={produto.id}
           produtos={produtos}
           favoritar={favoritar}
+          favoritos={favoritos}
           adicionarAoCarrinho={adicionarAoCarrinho}
-          estaNosFavoritos={produtoEstaNosFavoritos(produto)}
         />
       </div>
     </Provider>

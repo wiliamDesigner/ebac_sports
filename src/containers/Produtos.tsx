@@ -10,7 +10,12 @@ type Props = {
   adicionarAoCarrinho: (produto: ProdutoType) => void
 }
 
-const ProdutosComponent = ({ produtos, favoritos, favoritar }: Props) => {
+const ProdutosComponent = ({
+  produtos,
+  favoritos,
+  favoritar,
+  adicionarAoCarrinho
+}: Props) => {
   const produtoEstaNosFavoritos = (produto: ProdutoType) => {
     const produtoId = produto.id
     const IdsDosFavoritos = favoritos.map((f) => f.id)
@@ -25,7 +30,7 @@ const ProdutosComponent = ({ produtos, favoritos, favoritar }: Props) => {
             key={produto.id}
             produto={produto}
             favoritar={favoritar}
-            adicionarAoCarrinho={adicionarAoCarrinho} 
+            adicionarAoCarrinho={adicionarAoCarrinho}
             estaNosFavoritos={produtoEstaNosFavoritos(produto)}
           />
         ))}
