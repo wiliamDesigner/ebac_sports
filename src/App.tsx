@@ -17,9 +17,8 @@ export type Produto = {
 }
 
 function App() {
-  const dispatch = useDispatch()
+  /*const dispatch = useDispatch()
   const [produtos, setProdutos] = useState<Produto[]>([])
-  // const [carrinho, setCarrinho] = useState<Produto[]>([])
   const [favoritos, setFavoritos] = useState<Produto[]>([])
 
   useEffect(() => {
@@ -27,7 +26,7 @@ function App() {
       .then((res) => res.json())
       .then((res) => {
         setProdutos(res)
-        console.log(res) // Isso agora vai funcionar corretamente
+        console.log(res) 
       })
   }, [])
 
@@ -42,7 +41,7 @@ function App() {
     } else {
       setFavoritos([...favoritos, produto])
     }
-  }
+  }*/
 
   return (
     <Provider store={store}>
@@ -50,10 +49,6 @@ function App() {
       <div className="container">
         <Header favoritos={favoritos} />
         <Produtos
-          produtos={produtos}
-          favoritar={favoritar}
-          favoritos={favoritos}
-          adicionarAoCarrinho={adicionarAoCarrinho}
         />
       </div>
     </Provider>

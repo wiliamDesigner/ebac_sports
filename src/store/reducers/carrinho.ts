@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Produto } from '../../App'
+import api from '../../services/api'
 
 type CarrinhoState = {
   itens: Produto[] // Array de produtos
