@@ -14,10 +14,13 @@ import * as S from './styles'
 const ProdutosComponent = () => {
   const { data: produtos, isLoading } = useGetprodutosQuery()
   const [adicionarAoCarrinho] = useAdicionarAocarrinhoMutation()
+  const{data:favoritos}=useGetFavoritosQuery()
+  
 
   if (isLoading) return <h2>Carregando...</h2>
 
   const produtoEstaNosFavoritos = (produto: ProdutoType) => {
+    
     return produtoEstaNosFavoritos?.some((f) => f.id === produto.id)
   }
 
