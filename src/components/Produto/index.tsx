@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { Produto as ProdutoType } from '../../App'
 import * as S from './styles' // Importando os estilos
-import { adicionarAoCarrinho, favoritar } from '../../store/reducers/carrinho' 
+import { adicionar, favoritar } from '../../store/reducers/carrinho'
 
 // Função para formatar o preço em Real (se não estiver importada de outro lugar)
 export const paraReal = (valor: number) =>
@@ -24,7 +24,7 @@ const ProdutoComponent = ({ produto, estaNosFavoritos }: Props) => {
 
   // Função para adicionar um produto ao carrinho
   const handleAdicionarAoCarrinho = () => {
-    dispatch(adicionarAoCarrinho(produto));
+    dispatch(adicionar(produto))
   }
 
   return (

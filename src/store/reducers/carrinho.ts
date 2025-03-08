@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Produto } from '../../App';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Produto } from '../../App'
 
 type CarrinhoState = {
-  itens: Produto[]; // Array de produtos no carrinho
-  favoritos: Produto[]; // Array de produtos favoritos
-};
+  itens: Produto[] // Array de produtos no carrinho
+  favoritos: Produto[] // Array de produtos favoritos
+}
 
 const initialState: CarrinhoState = {
   itens: [], // Carrinho começa vazio
-  favoritos: [], // Lista de favoritos começa vazia
-};
+  favoritos: [] // Lista de favoritos começa vazia
+}
 
 const carrinhoSlice = createSlice({
   name: 'carrinho',
@@ -17,7 +17,7 @@ const carrinhoSlice = createSlice({
   reducers: {
     // Adiciona um produto ao carrinho
     adicionar: (state, action: PayloadAction<Produto>) => {
-      const produto = action.payload;
+      const produto = action.payload
       const produtoJaAdicionado = state.itens.find((p) => p.id === produto.id)
 
       if (produtoJaAdicionado) {
@@ -25,18 +25,20 @@ const carrinhoSlice = createSlice({
       } else {
         state.itens.push(produto)
       }
-    }
+    },
 
     // Remove um produto do carrinho
     remover: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
+      const id = action.payload
       state.itens = state.itens.filter((p) => p.id !== id)
     },
 
     // Adiciona ou remove um produto dos favoritos
     favoritar: (state, action: PayloadAction<Produto>) => {
-      const produto = action.payload;
-      const produtoJaFavoritado = state.favoritos.find((p) => p.id === produto.id)
+      const produto = action.payload
+      const produtoJaFavoritado = state.favoritos.find(
+        (p) => p.id === produto.id
+      )
 
       if (produtoJaFavoritado) {
         // Remove dos favoritos

@@ -3,7 +3,7 @@ import * as S from './styles'
 import { Produto } from '../../App'
 import cesta from '../../assets/cesta.png'
 import { paraReal } from '../Produto'
-import { RootReducer } from '../../store'
+import { RootState } from '../../store'
 
 type Props = {
   favoritos: Produto[]
@@ -12,9 +12,9 @@ type Props = {
 const Header = ({ favoritos }: Props) => {
   // com reduz a gente irá conseguir receber isso direto sem props
 
-  const itens = useSelector((state: RootReducer) => state.carrinho.itens)
+  const itens = useSelector((state: RootState) => state.carrinho.itens)
 
-  const valorTotal = itens.reduce((acc, item) => {
+  const valorTotal = itens.reduce((acc: number, item: Produto) => {
     acc += item.preco
     return acc
   }, 0)
