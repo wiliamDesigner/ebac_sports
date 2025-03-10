@@ -43,11 +43,14 @@ function App() {
       <div className="container">
         <Header favoritos={favoritos} />
         <Produtos
-          produto={produtos}
+          produtos={produtos}
           favoritar={favoritar}
           adicionarAoCarrinho={(produto) => {
             console.log('Adicionar ao carrinho:', produto)
           }}
+          estaNosFavoritos={(produto) =>
+            favoritos.some((fav) => fav.id === produto.id)
+          }
         />
       </div>
     </Provider>

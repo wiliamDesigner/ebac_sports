@@ -2,10 +2,10 @@
 import { Produto as ProdutoType } from '../App'
 
 type Props = {
-  produto: ProdutoType // Alterando para 'produto' (mais semântico e direto)
+  produtos: ProdutoType[] // Alterando para 'produto' (mais semântico e direto)
   favoritar: (produto: ProdutoType) => void
   adicionarAoCarrinho: (produto: ProdutoType) => void
-  estaNosFavoritos: boolean
+  estaNosFavoritos: (produto: ProdutoType) => boolean
 }
 
 const Produto = ({
@@ -18,7 +18,9 @@ const Produto = ({
     <div>
       <h3>{produto.nome}</h3>
       <button onClick={() => favoritar(produto)}>
-        {estaNosFavoritos ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+        {estaNosFavoritos(produto)
+          ? 'Remover dos Favoritos'
+          : 'Adicionar aos Favoritos'}
       </button>
       <button onClick={() => adicionarAoCarrinho(produto)}>
         Adicionar ao Carrinho
