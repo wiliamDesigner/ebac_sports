@@ -7,25 +7,28 @@ type Props = {
   adicionarAoCarrinho: (produto: ProdutoType) => void
   estaNosFavoritos: (produto: ProdutoType) => boolean
 }
-
 const Produto = ({
-  produto,
+  produtos,
   favoritar,
   adicionarAoCarrinho,
   estaNosFavoritos
 }: Props) => {
   return (
-    <div>
-      <h3>{produto.nome}</h3>
-      <button onClick={() => favoritar(produto)}>
-        {estaNosFavoritos(produto)
-          ? 'Remover dos Favoritos'
-          : 'Adicionar aos Favoritos'}
-      </button>
-      <button onClick={() => adicionarAoCarrinho(produto)}>
-        Adicionar ao Carrinho
-      </button>
-    </div>
+    <>
+      {produtos.map((produto) => (
+        <div key={produto.id}>
+          <h3>{produto.nome}</h3>
+          <button onClick={() => favoritar(produto)}>
+            {estaNosFavoritos(produto)
+              ? 'Remover dos Favoritos'
+              : 'Adicionar aos Favoritos'}
+          </button>
+          <button onClick={() => adicionarAoCarrinho(produto)}>
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      ))}
+    </>
   )
 }
 
