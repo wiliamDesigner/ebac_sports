@@ -6,12 +6,14 @@ type Props = {
   favoritar: (produto: ProdutoType) => void
   adicionarAoCarrinho: (produto: ProdutoType) => void
   estaNosFavoritos: (produto: ProdutoType) => boolean
+  estaNoCarrinho: (produto: ProdutoType) => boolean
 }
 const Produto = ({
   produtos,
   favoritar,
   adicionarAoCarrinho,
-  estaNosFavoritos
+  estaNosFavoritos,
+  estaNoCarrinho
 }: Props) => {
   return (
     <>
@@ -24,7 +26,10 @@ const Produto = ({
               : 'Adicionar aos Favoritos'}
           </button>
           <button onClick={() => adicionarAoCarrinho(produto)}>
-            Adicionar ao Carrinho
+            {estaNoCarrinho(produto)
+              ? 'Remover do Carrinho'
+              : 'Adicionar ao Carrinho'}
+            Adiciona ao Carrinho
           </button>
         </div>
       ))}
