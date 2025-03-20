@@ -9,10 +9,10 @@ type Props = {
   favoritos: Produto[]
 }
 
-const Header = ({ favoritos }: Props) => {
+const Header = () => {
   // com reduz a gente irá conseguir receber isso direto sem props
 
-  const itens = useSelector((state: RootState) => state.carrinho.itens)
+  const { itens, favoritos } = useSelector((state: RootState) => state.carrinho)
 
   const valorTotal = itens.reduce((acc: number, item: Produto) => {
     acc += item.preco
