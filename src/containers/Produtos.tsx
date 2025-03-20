@@ -1,5 +1,6 @@
 // src/components/Produto.tsx
 import { Produto as ProdutoType } from '../App'
+import ProdutoComponent from '../components/Produto/Produto'
 
 type Props = {
   produtos: ProdutoType[] // Alterando para 'produto' (mais semântico e direto)
@@ -18,20 +19,14 @@ const Produto = ({
   return (
     <>
       {produtos.map((produto) => (
-        <div key={produto.id}>
-          <h3>{produto.nome}</h3>
-          <button onClick={() => favoritar(produto)}>
-            {estaNosFavoritos(produto)
-              ? 'Remover dos Favoritos'
-              : 'Adicionar aos Favoritos'}
-          </button>
-          <button onClick={() => adicionarAoCarrinho(produto)}>
-            {estaNoCarrinho(produto)
-              ? 'Remover do Carrinho'
-              : 'Adicionar ao Carrinho'}
-            Adiciona ao Carrinho
-          </button>
-        </div>
+        <ProdutoComponent
+          key={produto.id}
+          produto={produto}
+          estaNosFavoritos={estaNosFavoritos(produto)}
+          adicionaraocarrinho={() => adicionarAoCarrinho(produto)}
+          estanocarrinho={() => estaNoCarrinho(produto)}
+          favoritar={() => favoritar(produto)}
+        />
       ))}
     </>
   )

@@ -12,6 +12,9 @@ export const paraReal = (valor: number) =>
 type Props = {
   produto: ProdutoType
   estaNosFavoritos: boolean
+  adicionaraocarrinho: () => void // tenho que declarar essa props para poder usar ela
+  estanocarrinho: () => void // tenho que declarar essa props para poder usar ela
+  favoritar: () => void // tenho que declarar essa props para poder usar ela
 }
 
 const ProdutoComponent = ({ produto, estaNosFavoritos }: Props) => {
