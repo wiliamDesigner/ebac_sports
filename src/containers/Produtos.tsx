@@ -1,7 +1,7 @@
 // src/components/Produto.tsx
 import { Produto as ProdutoType } from '../App'
 import ProdutoComponent from '../components/Produto/Produto'
-
+import { Produtos } from './styles'
 type Props = {
   produtos: ProdutoType[] // Alterando para 'produto' (mais semântico e direto)
   favoritar: (produto: ProdutoType) => void
@@ -17,7 +17,7 @@ const Produto = ({
   estaNoCarrinho
 }: Props) => {
   return (
-    <>
+    <Produtos>
       {produtos.map((produto) => (
         <ProdutoComponent
           key={produto.id}
@@ -28,7 +28,7 @@ const Produto = ({
           favoritar={() => favoritar(produto)}
         />
       ))}
-    </>
+    </Produtos>
   )
 }
 
